@@ -1,6 +1,11 @@
-export default function Layout({children}){
+import Sidebar from "@/Components/AdminComponents/Sidebar";
+
+export default function Layout({children}: {children: React.ReactNode}){
     return(
         <>
+        <div className="flex">
+            <Sidebar/>
+        </div>
         {children}
         </>
     )
