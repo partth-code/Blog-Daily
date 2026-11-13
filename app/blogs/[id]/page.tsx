@@ -6,12 +6,19 @@ import Link from "next/link";
 import { assets, blog_data } from "@/Assets/assets";
 import Footer from "@/Components/Footer";
  
-
 const PageContent =  () =>{
 
     const params = useParams<{id: string}>();
 
     const [data,setData] = useState<(typeof blog_data)[number] | null>(null);
+    //const fetchBlogData = async () =>{
+        //const response = await axios.get('/api/blog'.{
+            //params:{id:pramars.id
+
+            //}
+        //})
+        //setData(response.data);
+    //}
 
     const fetchBlogData = () =>{
         for(let i=0;i<blog_data.length;i++){
