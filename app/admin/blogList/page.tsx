@@ -45,7 +45,7 @@ const page = () => {
           </thead>
           <tbody>
             {blogs.map((item,index)=>{
-              return <BlogTableItem />
+              return <BlogTableItem  />
             })}
             
             
