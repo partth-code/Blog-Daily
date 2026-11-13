@@ -4,3 +4,7 @@
   background-color: white;
   color: black;
 } */
+/*.scrollbar-hide{
+  -ms-overflow-style:none;
+  scrollbar-width:none;
+}*/
