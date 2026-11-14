@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { assets, blog_data } from "@/Assets/assets";
 import Footer from "@/Components/Footer";
+import axios from "axios";
  
 const PageContent =  () =>{
 
@@ -20,15 +21,13 @@ const PageContent =  () =>{
         //setData(response.data);
     //}
 
-    const fetchBlogData = () =>{
-        for(let i=0;i<blog_data.length;i++){
-            if(Number(params.id)=== blog_data[i].id){
-                setData(blog_data[i]);
-                console.log(blog_data[i]);
-                break;
-                
+    const fetchBlogData = async () =>{
+         const response = await axios.get('api/blog',{
+            params:{
+                id:params.id
             }
-        }
+         })
+         setData(response.data);
     }
 
     useEffect(()=>{
@@ -50,7 +49,7 @@ const PageContent =  () =>{
 
             <div className="text-center my-24">
                 <h1 className="tex-2xl sm:text-5xl font-semibold max-w-[700px] mx-auto">{data?.title}</h1>
-               {data && <Image src={data.author_img} alt="" width={60} height={60} className="mx-auto mt-6 border-white rounded-full"/>}
+               {data && <Image src={data.authorImg} alt="" width={60} height={60} className="mx-auto mt-6 border-white rounded-full"/>}
                <p className="mt-1 pb-2 text-lg max-w-[740px] mx-auto">{data?.author}</p>
             </div>
             <div className="mx-5 max-w-[800px] md:mx-auto mt-[-100px] mb-10">

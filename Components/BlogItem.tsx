@@ -9,7 +9,7 @@ type BlogItemProps = {
     description:string;
     category:string;
     image:StaticImageData;
-    id:number;
+    id:string;
 }
 const BlogItem = ({title,description,category,image,id}:BlogItemProps) =>{
     return(

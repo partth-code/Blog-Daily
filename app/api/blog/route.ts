@@ -2,19 +2,31 @@ import { ConnectDB } from "@/lib/config/db"
 import { NextRequest, NextResponse } from "next/server"
 import { writeFile } from "fs/promises";
 import BlogModel from "@/lib/models/BlogModel";
+import { request } from "http";
 
 const LoadDB = async () =>{
     await ConnectDB();
 }
 
 //api Endpoint to get all blogs 
-export async function GET(){
+export async function GET(request:NextRequest){
    // const blogId = request.nextUrl.searchParams.get("id");
    // if (blogId){
         //const blog = await BlogModel.findById(blogId);
        // return NextResponse.json(blog);
    // }
    // else{
+    await LoadDB();
+
+    const blogId = request.nextUrl.searchParams.get("id");
+    if(blogId){
+        const blog = await BlogModel.findById(blogId);
+        return NextResponse.json(blog);
+    }else{
+        const blogs = await BlogModel.find({});
+        return NextResponse.json({blogs})
+    }
+
     const blogs = await BlogModel.find({});
     return NextResponse.json({blogs})
 
